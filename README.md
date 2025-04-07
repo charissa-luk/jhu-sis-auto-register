@@ -18,7 +18,8 @@ This Python script automates course registration on [JHU SIS](https://sis.jhu.ed
 - macOS (script is tested only on Mac — Windows compatibility not guaranteed)
 - Python 3.7+
 - Google Chrome (latest version)
-- [ChromeDriver](https://sites.google.com/chromium.org/driver/) (must match your Chrome version)
+- ChromeDriver (must match your Chrome version exactly)
+- Chromium engine (make sure both **Chrome** and **Chromium** are installed and **up to date with matching versions**)
 
 Install required Python libraries:
 ```bash
@@ -31,29 +32,34 @@ pip install selenium python-dateutil
 
 ### 1. 📦 Download or Clone the Repo
 ```bash
-git clone https://github.com/open-minded-you/jhu-sis-auto-register.git
+git clone https://github.com/charissa-luk/jhu-sis-auto-register.git
 cd jhu-sis-auto-register
 ```
 
-### 2. ▶️ Run the Bot
+### 2. ⏲️ Sync Your Clock (macOS Only)
+SIS uses the US Naval Observatory (NIST) time. You must sync your Mac to match this clock:
+
+1. Open **System Preferences** → **Date & Time**
+2. Click the **lock icon** and enter your Mac password
+3. Change server from `time.apple.com` ➜ `tick.usno.navy.mil`
+4. Click the **lock again** to save
+
+### 3. ▶️ Run the Bot
 ```bash
 python sis_register.py
 ```
-
 You will be prompted to enter:
 - Your **JHU email**
 - Your **JHU password**
 - Your **registration time** in **24-hour format** (e.g., `07:00` for 7:00 AM, `13:30` for 1:30 PM)
 
-> ⏰ **Important**: Use [NIST Time](https://time.gov) to sync your system clock before running this script.
-
-> 💡 The script automatically logs in **7 minutes before** your chosen registration time and patiently waits.
+> ⏰ The script automatically logs in **7 minutes before** your chosen registration time and patiently waits.
 
 ---
 
 ## ⚠️ Notes
 - SIS is **extremely slow**. This script uses long wait times (up to 2 minutes per element) to ensure reliability.
-- If you use **2-Factor Authentication**, this script will **not work**. As a workaround, log into your Microsoft account manually earlier in the day.
+- If you use **2-Factor Authentication**, this script will **not work**. As a workaround, **log into your Microsoft account manually earlier in the day**.
 - You must already have classes in your Enrollment Cart.
 - Always double-check SIS afterward to confirm your enrollment.
 
