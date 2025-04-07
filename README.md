@@ -40,9 +40,8 @@ cd jhu-sis-auto-register
 SIS uses the US Naval Observatory (NIST) time. You must sync your Mac to match this clock:
 
 1. Open **System Preferences** → **Date & Time**
-2. Click the **lock icon** and enter your Mac password
+2. In the Source category, click **set** and enter your Mac password
 3. Change server from `time.apple.com` ➜ `tick.usno.navy.mil`
-4. Click the **lock again** to save
 
 ### 3. ▶️ Run the Bot
 ```bash
