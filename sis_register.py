@@ -16,9 +16,9 @@ import tempfile
 # Interactive input setup
 # --------------------------
 print("📝 Enter the following information to set up the SIS bot:")
-email = input("Your JHU email address: ")
-password = input("Your JHU password: ")
-time_input = input("Time to register (24-hour format HH:MM): ")
+email = input("📧 Your JHU email address: ")
+password = input("🔐 Your JHU password: ")
+time_input = input("⏰ Time to register (24-hour format HH:MM): ")
 
 # --------------------------
 # Time setup
@@ -55,13 +55,22 @@ try:
     sign_in_button.click()
     print("✅ 'Sign In' button clicked.")
 
-    WebDriverWait(browser, 60).until(EC.presence_of_element_located((By.NAME, "loginfmt")))
+    # Wait for the Microsoft login page and make sure the email field is visible & interactable
+    WebDriverWait(browser, 69).until(
+        EC.visibility_of_element_located((By.NAME, "loginfmt"))
+    )
     email_field = browser.find_element(By.NAME, "loginfmt")
+
+    # Ensure it's clickable
+    WebDriverWait(browser, 60).until(EC.element_to_be_clickable((By.NAME, "loginfmt")))
+    email_field.click()  # This helps in some cases
+    email_field.clear()  # Just in case it's prefilled and can't be typed into
     email_field.send_keys(email)
     email_field.send_keys(Keys.RETURN)
+
     time.sleep(2)
 
-    WebDriverWait(browser, 60).until(EC.element_to_be_clickable((By.NAME, "passwd")))
+    WebDriverWait(browser, 69).until(EC.element_to_be_clickable((By.NAME, "passwd")))
     password_field = browser.find_element(By.NAME, "passwd")
     password_field.send_keys(password)
     password_field.send_keys(Keys.RETURN)
