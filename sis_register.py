@@ -160,6 +160,5 @@ try:
     time.sleep(10)
 except Exception as e:
     print(f"❌ Failed to click register: {e}")
-    browser.save_screenshot("click_register_fail.png")
     browser.quit()
     sys.exit(1)
