@@ -87,7 +87,6 @@ The script will prompt you for:
 - 🧳 Make sure **Google Chrome** and **ChromeDriver** are:
   - Fully up to date
   - Exactly the same version
-- 💥 If something fails, a screenshot will be saved for debugging
 
 ---
 
