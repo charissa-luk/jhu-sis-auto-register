@@ -1,85 +1,102 @@
-# JHU SIS Auto Registration Bot
+# 💾 JHU SIS Auto Registration Bot
 
-This Python script automates course registration on [JHU SIS](https://sis.jhu.edu/sswf/) using Selenium. It navigates through the Microsoft SSO login, expands the registration menu, selects all courses in your cart, and clicks register right at the time you choose.
+This Python script automates course registration on [JHU SIS](https://sis.jhu.edu/sswf/) using Selenium. It logs in via Microsoft SSO, navigates to the registration cart, selects all classes, and clicks register at your specified time — **with a 7-minute pre-login buffer**.
 
 ---
 
 ## 🚀 Features
-- Automatic login via Microsoft SSO
-- Navigates to "My Cart"
-- Selects all classes
-- Clicks "Register" at your target time
-- Built-in retry and wait logic for slow SIS loads
-- Prompts for email, password, and registration time interactively
+- Logs in with your JHU Microsoft credentials
+- Navigates to the registration cart
+- Waits for the exact time to register
+- Selects all classes and clicks "Register"
+- Handles SIS slowness with retries and waits
+- Interactive terminal prompts for credentials and time
 
 ---
 
 ## 🔧 Requirements
-- macOS (script is tested only on Mac — Windows compatibility not guaranteed)
-- Python 3.7+
-- Google Chrome (latest version)
-- ChromeDriver (must match your Chrome version exactly)
-- Chromium engine (make sure both **Chrome** and **Chromium** are installed and **up to date with matching versions**)
 
-Install required Python libraries:
+- **macOS** (tested; Windows not guaranteed)
+- **Python 3.7+**
+- **Google Chrome** (latest version)
+- **ChromeDriver** matching your Chrome version  
+  Download: [https://sites.google.com/chromium.org/driver/](https://sites.google.com/chromium.org/driver/)
+
+---
+
+## 📦 Installation & Setup
+
+### 1. 🔁 Clone the Repo
+```bash
+git clone https://github.com/charissa-luk/jhu-sis-auto-register.git
+cd jhu-sis-auto-register
+```
+
+### 2. 🐍 Create & Activate a Virtual Environment (Recommended)
+```bash
+python3 -m venv sis-bot-venv
+source sis-bot-venv/bin/activate
+```
+
+### 3. 📦 Install Required Packages
 ```bash
 pip install selenium python-dateutil
 ```
 
 ---
 
-## 🧪 How to Use
+## ⏲️ Sync Your Clock (macOS Only)
 
-### 1. 📦 Download or Clone the Repo
-```bash
-git clone https://github.com/charissa-luk/jhu-sis-auto-register.git
-cd jhu-sis-auto-register
-```
-
-### 2. ⏲️ Sync Your Clock (macOS Only)
-SIS uses the US Naval Observatory (NIST) time. You must sync your Mac to match this clock:
+SIS uses the US Naval Observatory (NIST) clock. You must sync your Mac to match this time source:
 
 1. Open **System Preferences** → **Date & Time**
-2. In the Source category, click **set** and enter your Mac password
-3. Change server from `time.apple.com` ➜ `tick.usno.navy.mil`
+2. In the **Time Server** field, click **Set** and enter your Mac password
+3. Change the server from `time.apple.com` ➜ `tick.usno.navy.mil`
+4. Click the lock again to save your changes
 
-### 3. ▶️ Run the Bot
+---
+
+## ▶️ Run the Bot
+From the repo folder:
 ```bash
 python sis_register.py
 ```
-You will be prompted to enter:
-- Your **JHU email**
-- Your **JHU password**
-- Your **registration time** in **24-hour format** (e.g., `07:00` for 7:00 AM, `13:30` for 1:30 PM)
 
-> ⏰ The script automatically logs in **7 minutes before** your chosen registration time and patiently waits.
+The script will prompt you for:
 
----
+- 📧 **JHU email**
+- 🔑 **Password**
+- ⏰ **Registration time** (24-hour format, e.g., `07:00` for 7AM)
 
-## ⚠️ Notes
-- SIS is **extremely slow**. This script uses long wait times (up to 2 minutes per element) to ensure reliability.
-- If you use **2-Factor Authentication**, this script will **not work**. As a workaround, **log into your Microsoft account manually earlier in the day**.
-- You must already have classes in your Enrollment Cart.
-- Always double-check SIS afterward to confirm your enrollment.
+> ⏳ The bot logs in **7 minutes before** the registration time and waits.
 
 ---
 
-## 📸 Screenshots
-Any failure will auto-save a screenshot to help you debug what went wrong.
+## 🧠 Notes
+
+- SIS is very slow — this bot uses long wait times (up to 2 mins per element)
+- You **must** have already added classes to your Enrollment Cart
+- If you use **2-Factor Authentication (2FA)**:
+  - The script will **not work** through the 2FA page
+  - **Workaround**: log into your Microsoft account **manually** earlier that day, so 2FA won’t be triggered
+
+---
+
+## 🧪 Troubleshooting
+
+- 🧳 Make sure **Google Chrome** and **ChromeDriver** are:
+  - Fully up to date
+  - Exactly the same version
+- 💥 If something fails, a screenshot will be saved for debugging
 
 ---
 
 ## 📄 License
-This project is licensed under the [MIT License](LICENSE).
+
+[MIT License](LICENSE)
 
 ---
 
 ## 🙏 Credits
-Created by Charissa for the JHU community. Fork, improve, and share freely!
 
----
-
-## 👾 Disclaimer
-This bot is a helpful assistant, not an exploit. Please use it responsibly and at your own risk. Confirm all course registrations manually on SIS afterward.
-
-Works on **macOS** only. Windows support is untested and not guaranteed.
+Created by Charissa for the JHU community. Feel free to fork and improve.
