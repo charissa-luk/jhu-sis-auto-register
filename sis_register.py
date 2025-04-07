@@ -9,15 +9,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from selenium.common.exceptions import NoAlertPresentException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, NoAlertPresentException
 import tempfile
+import getpass
+import threading
 
 # --------------------------
 # Interactive input setup
 # --------------------------
 print("📝 Enter the following information to set up the SIS bot:")
 email = input("📧 Your JHU email address: ")
-password = input("🔐 Your JHU password: ")
+password = getpass.getpass("🔐 Your JHU password: ")
 time_input = input("⏰ Time to register (24-hour format HH:MM): ")
 
 # --------------------------
@@ -32,6 +35,13 @@ if registration_time <= now:
     registration_time += datetime.timedelta(days=1)
 
 # --------------------------
+# Wait until 10 minutes before registration to log in to avoid inactivity log out
+# --------------------------
+login_time = registration_time - datetime.timedelta(minutes=10)
+print(f"⏳ Waiting until {login_time.strftime('%H:%M:%S')} to begin login...")
+while datetime.datetime.now() < login_time:
+    time.sleep(1)
+# --------------------------
 # Chrome Setup: Use saved Chrome login session
 # --------------------------
 unique_user_data_dir = tempfile.mkdtemp()
@@ -42,6 +52,23 @@ chrome_options.add_experimental_option("detach", True)
 
 browser = webdriver.Chrome(options=chrome_options)
 browser.get("https://sis.jhu.edu/sswf/")
+
+# Background thread to handle inactivity popup
+def stay_logged_in_watcher(browser):
+    while True:
+        try:
+            alert = browser.switch_to.alert
+            print("⚠️ Inactivity alert detected! Clicking 'OK' to stay logged in.")
+            alert.accept()
+            print("✅ Alert dismissed.")
+        except NoAlertPresentException:
+            pass
+        time.sleep(5)  # Check every 5 seconds
+
+# Start the watcher in background
+watcher_thread = threading.Thread(target=stay_logged_in_watcher, args=(browser,), daemon=True)
+watcher_thread.start()
+
 
 # --------------------------
 # Handling "Sign In" Button
@@ -62,7 +89,7 @@ try:
     email_field = browser.find_element(By.NAME, "loginfmt")
 
     # Ensure it's clickable
-    WebDriverWait(browser, 60).until(EC.element_to_be_clickable((By.NAME, "loginfmt")))
+    WebDriverWait(browser, 69).until(EC.element_to_be_clickable((By.NAME, "loginfmt")))
     email_field.click()  # This helps in some cases
     email_field.clear()  # Just in case it's prefilled and can't be typed into
     email_field.send_keys(email)
