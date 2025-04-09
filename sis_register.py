@@ -177,7 +177,7 @@ for attempt in range(MAX_RETRIES):
 # WAIT for registration time
 print(f"⏳ Waiting for registration at {registration_time.strftime('%H:%M:%S')}...")
 while datetime.datetime.now() < registration_time:
-    time.sleep(1)
+    time.sleep(0.1) # checks every 10th of a second for registration time
 
 # Click register
 try:
