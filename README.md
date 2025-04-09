@@ -4,7 +4,7 @@ This Python script automates course registration on [JHU SIS](https://sis.jhu.ed
 
 ---
 
-## 🚀 Features
+## Features
 - Logs in with your JHU Microsoft credentials
 - Navigates to the registration cart
 - Waits for the exact time to register
@@ -14,7 +14,7 @@ This Python script automates course registration on [JHU SIS](https://sis.jhu.ed
 
 ---
 
-## 🔧 Requirements
+## Requirements
 
 - **macOS** (tested; Windows not guaranteed)
 - **Python 3.7+**
@@ -24,28 +24,28 @@ This Python script automates course registration on [JHU SIS](https://sis.jhu.ed
 
 ---
 
-## 📦 Installation & Setup
+## Installation & Setup
 
-### 1. 🔁 Clone the Repo
+### 1. Clone the Repo
 ```bash
 git clone https://github.com/charissa-luk/jhu-sis-auto-register.git
 cd jhu-sis-auto-register
 ```
 
-### 2. 🐍 Create & Activate a Virtual Environment (Recommended)
+### 2. Create & Activate a Virtual Environment (Recommended)
 ```bash
 python3 -m venv sis-bot-venv
 source sis-bot-venv/bin/activate
 ```
 
-### 3. 📦 Install Required Packages
+### 3. Install Required Packages
 ```bash
 pip install selenium python-dateutil
 ```
 
 ---
 
-## ⏲️ Sync Your Clock (macOS Only)
+## ⏲Sync Your Clock (macOS Only)
 
 SIS uses the US Naval Observatory (NIST) clock. You must sync your Mac to match this time source:
 
@@ -56,7 +56,7 @@ SIS uses the US Naval Observatory (NIST) clock. You must sync your Mac to match 
 
 ---
 
-## ▶️ Run the Bot
+## Run the Bot
 From the repo folder:
 ```bash
 python sis_register.py
@@ -68,11 +68,11 @@ The script will prompt you for:
 - 🔑 **Password**
 - ⏰ **Registration time** (24-hour format, e.g., `07:00` for 7AM)
 
-> ⏳ The bot logs in **7 minutes before** the registration time and waits.
+> The bot logs in **10 minutes before** the registration time and waits.
 
 ---
 
-## 🧠 Notes
+## Notes
 
 - SIS is very slow — this bot uses long wait times (up to 2 mins per element)
 - You **must** have already added classes to your Enrollment Cart
@@ -84,7 +84,7 @@ The script will prompt you for:
 
 ---
 
-## 🧪 Troubleshooting
+## Troubleshooting
 
 - 🧳 Make sure **Google Chrome** and **ChromeDriver** are:
   - Fully up to date
@@ -92,12 +92,12 @@ The script will prompt you for:
 
 ---
 
-## 📄 License
+## License
 
 [MIT License](LICENSE)
 
 ---
 
-## 🙏 Credits
+## Credits
 
-Created by Charissa for the JHU community. Feel free to fork and improve.
+Created by Charissa. Feel free to fork and improve.
