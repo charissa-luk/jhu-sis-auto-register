@@ -79,6 +79,8 @@ The script will prompt you for:
 - If you use **2-Factor Authentication (2FA)**:
   - The script will **not work** through the 2FA page
   - **Workaround**: log into your Microsoft account **manually** earlier that day, so 2FA won’t be triggered
+ - If you encounter a **"Continue to SIS"** button after login, it's likely due to an active SIS survey.  
+  → You can safely **comment out the "Continue to SIS" code block** if you don't see that page.
 
 ---
 
