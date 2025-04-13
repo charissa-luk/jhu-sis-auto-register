@@ -101,7 +101,8 @@ try:
     password_field = browser.find_element(By.NAME, "passwd")
     password_field.send_keys(password)
     password_field.send_keys(Keys.RETURN)
-
+    '''
+    # Comment out this section if there is no active survey page. Include it if there is a survey with a 'Continue to SIS' button.
     try:
         continue_btn = WebDriverWait(browser, 60).until(
             EC.presence_of_element_located((By.ID, 'ctl00_contentPlaceHolder_btnContinueToIsis'))
@@ -113,6 +114,7 @@ try:
     except Exception as e:
         print(f"❌ Failed to click 'Continue to SIS'. Error: {e}")
         sys.exit(1)
+    '''
 
 except Exception as e:
     print(f"❌ Login failed. Error: {str(e)}")
