@@ -56,6 +56,29 @@ SIS uses the US Naval Observatory (NIST) clock. You must sync your Mac to match 
 
 ---
 
+## Prevent Mac From Sleeping (Optional but Recommended)
+
+To prevent your Mac from sleeping before registration time, install and use **Caffeine** or the built-in `caffeinate` command:
+
+### Option A: Using Terminal (Recommended)
+If it’s midnight and you want to keep the system awake until 7:30 AM (7.5 hours = 27000 seconds):
+```bash
+caffeinate -t 27000
+```
+Make sure your computer is plugged in!
+
+### Option B: Install Caffeine App
+Install with Homebrew:
+```bash
+brew install --cask caffeine
+```
+Website: [https://intelliscapesolutions.com/apps/caffeine](https://intelliscapesolutions.com/apps/caffeine)
+
+If you're on an M1/M2/M3 Mac, note that **Rosetta 2** may be required:
+```bash
+softwareupdate --install-rosetta --agree-to-license
+```
+
 ## Run the Bot
 From the repo folder:
 ```bash
