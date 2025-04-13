@@ -1,6 +1,6 @@
 # 💾 JHU SIS Auto Registration Bot
 
-This Python script automates course registration on [JHU SIS](https://sis.jhu.edu/sswf/) using Selenium. It logs in via Microsoft SSO, navigates to the registration cart, selects all classes, and clicks register at your specified time — **with a 10-minute pre-login buffer**.
+This Python script automates course registration on [JHU SIS](https://sis.jhu.edu/sswf/) using Selenium. It logs in via Microsoft SSO, navigates to the registration cart, selects all classes, and clicks register at your specified time with a 10-minute pre-login buffer since SIS is slow.
 
 ---
 
