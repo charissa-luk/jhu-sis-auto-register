@@ -16,7 +16,7 @@ This Python script automates course registration on [JHU SIS](https://sis.jhu.ed
 
 ## Requirements
 
-- **macOS** (tested; Windows not guaranteed)
+- **macOS** (Sequoia tested; Windows 11 tested)
 - **Python 3.7+**
 - **Google Chrome** (latest version)
 - **ChromeDriver** matching your Chrome version  
